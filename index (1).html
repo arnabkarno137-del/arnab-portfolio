@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Don't Laugh Challenge 😂</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@700;800&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2b1055;--pink:#ff4d8d;--yel:#ffd93d;--mint:#2de2b4;--sky:#4cc9f0;--card:rgba(255,255,255,.2)}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;font-family:'Hind Siliguri',sans-serif;color:#fff;background:linear-gradient(125deg,#ff4d8d,#7b2ff7,#4cc9f0,#2de2b4,#ffd93d);background-size:500% 500%;animation:bg 18s ease infinite;display:flex;justify-content:center;padding:14px;overflow-x:hidden}
+@keyframes bg{50%{background-position:100% 50%}}
+h1,h2,.big{font-family:'Baloo Da 2','Hind Siliguri',cursive;font-weight:800}
+.scr{display:none;width:100%;max-width:680px;position:relative;z-index:2}.scr.on{display:block}
+.card{background:var(--card);backdrop-filter:blur(10px);border:2px solid rgba(255,255,255,.45);border-radius:26px;padding:18px;margin-bottom:14px;box-shadow:0 10px 30px rgba(43,16,85,.25)}
+h1{font-size:clamp(34px,9vw,56px);text-align:center;line-height:1.1;text-shadow:3px 3px 0 var(--ink);animation:wob 2.5s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(-2deg) scale(1.04)}}
+.sub{text-align:center;margin:6px 0 14px;font-weight:600}
+input{width:100%;padding:12px 16px;border-radius:16px;border:0;font:inherit;font-size:18px;color:var(--ink);margin-bottom:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.opt{flex:1;min-width:140px;padding:12px 8px;border-radius:18px;border:3px solid transparent;background:rgba(43,16,85,.35);color:#fff;font:inherit;font-weight:700;font-size:16px;cursor:pointer;transition:.2s}
+.opt:hover{transform:translateY(-3px)}.opt.sel{background:var(--yel);color:var(--ink);border-color:#fff;transform:scale(1.04)}
+.btn{display:block;width:100%;padding:14px;border:0;border-radius:20px;font:inherit;font-family:'Baloo Da 2';font-size:24px;font-weight:800;color:var(--ink);background:linear-gradient(90deg,var(--yel),#ff9f1c);cursor:pointer;box-shadow:0 6px 0 #c77700;transition:.15s;margin-top:6px}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 #c77700}.btn.alt{background:linear-gradient(90deg,var(--mint),var(--sky));box-shadow:0 6px 0 #168a9c}
+.hud{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;margin-bottom:10px}
+.hud div{background:var(--card);border:2px solid rgba(255,255,255,.4);border-radius:16px;padding:6px 2px;font-size:13px;font-weight:600}
+.hud b{display:block;font-family:'Baloo Da 2';font-size:24px;line-height:1.1}
+.bar{height:16px;background:rgba(43,16,85,.4);border-radius:10px;overflow:hidden;margin-bottom:12px}
+#bar{height:100%;width:100%;background:linear-gradient(90deg,var(--mint),var(--yel),var(--pink));border-radius:10px;transition:width 1s linear}
+#stage{text-align:center;min-height:300px}
+#tag{display:inline-block;background:var(--ink);padding:4px 14px;border-radius:20px;font-weight:700;font-size:14px}
+#pic{font-size:clamp(54px,16vw,92px);margin:10px 0;filter:drop-shadow(0 6px 0 rgba(43,16,85,.3))}
+#pic.in{animation:pop .7s cubic-bezier(.2,2,.4,1)}
+@keyframes pop{0%{transform:scale(0) rotate(-40deg)}100%{transform:scale(1) rotate(0)}}
+#txt{font-size:clamp(19px,4.6vw,25px);font-weight:700;line-height:1.5}
+#extra{margin-top:10px;font-weight:600;color:var(--yel);min-height:28px;font-size:18px}
+#ans{display:none;margin-top:8px;background:var(--yel);color:var(--ink);padding:8px 14px;border-radius:16px;font-weight:700;animation:pop .5s}
+#hearts{font-size:26px;letter-spacing:3px}
+.cam{position:fixed;right:10px;bottom:10px;width:130px;z-index:5;background:var(--ink);border-radius:16px;padding:5px;border:2px solid #fff;display:none}
+.cam video{width:100%;border-radius:11px;transform:scaleX(-1);display:block}
+.m{height:8px;background:#fff3;border-radius:6px;margin-top:4px;overflow:hidden;position:relative}
+#meter{height:100%;width:0;background:var(--pink);transition:width .1s}.m::after{content:'';position:absolute;left:72%;top:0;bottom:0;width:2px;background:#fff}
+.cam small{font-size:11px;display:block;text-align:center}
+#lol{background:linear-gradient(90deg,#ff4d8d,#ff9f1c);color:#fff;box-shadow:0 6px 0 #9c1f50;display:none}
+.lb{list-style:none;padding:0}.lb li{display:flex;gap:8px;padding:6px 10px;border-radius:12px;background:rgba(43,16,85,.3);margin-bottom:5px;font-weight:600}
+.lb li:first-child{background:var(--yel);color:var(--ink)}.lb span:nth-child(2){flex:1}
+.toast{position:fixed;top:14px;left:50%;transform:translate(-50%,-120px);background:var(--ink);padding:10px 20px;border-radius:30px;font-weight:700;z-index:20;transition:.4s;border:2px solid var(--yel);max-width:90vw;text-align:center}
+.toast.on{transform:translate(-50%,0)}
+.shake{animation:sh .5s}@keyframes sh{20%,60%{transform:translateX(-14px) rotate(-1deg)}40%,80%{transform:translateX(14px) rotate(1deg)}}
+.flash::before{content:'';position:fixed;inset:0;background:#ff1744;opacity:.5;z-index:15;animation:fl .5s forwards;pointer-events:none}@keyframes fl{to{opacity:0}}
+.warn #tm{color:var(--yel);animation:pul .5s infinite alternate}@keyframes pul{to{transform:scale(1.3)}}
+.fl{position:fixed;font-size:30px;opacity:.5;z-index:1;pointer-events:none;animation:fy linear infinite}@keyframes fy{from{transform:translateY(105vh) rotate(0)}to{transform:translateY(-15vh) rotate(360deg)}}
+.cf{position:fixed;top:-40px;font-size:28px;z-index:30;pointer-events:none;animation:cf 3s linear forwards}@keyframes cf{to{transform:translateY(110vh) rotate(720deg)}}
+#mini{text-align:center;font-size:13px;opacity:.9;margin-top:4px}
+#snd{position:fixed;top:10px;right:10px;z-index:9;border:0;background:var(--card);border-radius:50%;width:42px;height:42px;font-size:20px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<button id="snd" aria-label="সাউন্ড">🔊</button>
+<div class="toast" id="toast"></div>
+
+<!-- START -->
+<section class="scr on" id="s1">
+  <h1>😂 Don't Laugh<br>Challenge 🤐</h1>
+  <p class="sub">৬০ সেকেন্ড হাসি চেপে রাখো, নইলে লাইফ যাবে!</p>
+  <div class="card">
+    <input id="name" maxlength="14" placeholder="তোমার নাম লেখো 😎">
+    <p style="font-weight:700;margin-bottom:6px">গেমের ধরন বেছে নাও:</p>
+    <div class="row" id="modes">
+      <button class="opt sel" data-m="challenge">🤪 Funny Challenge</button>
+      <button class="opt" data-m="story">📖 Funny Story</button>
+      <button class="opt" data-m="question">❓ Funny Question</button>
+    </div>
+    <p style="font-weight:700;margin-bottom:6px">হাসি শনাক্ত করার উপায়:</p>
+    <div class="row" id="cams">
+      <button class="opt sel" data-c="1">📷 ক্যামেরা (AI)</button>
+      <button class="opt" data-c="0">🖐️ Manual Mode</button>
+    </div>
+    <button class="btn" id="go">▶ খেলা শুরু!</button>
+    <p id="mini">ক্যামেরা অনুমতি না দিলে বা AI মডেল লোড না হলে নিজে থেকেই Manual Mode চালু হবে। (ভিডিও কোথাও পাঠানো হয় না)</p>
+  </div>
+  <div class="card"><h2>🏆 লিডারবোর্ড</h2><ul class="lb" id="lb1"></ul></div>
+</section>
+
+<!-- GAME -->
+<section class="scr" id="s2">
+  <div class="hud">
+    <div>⏱ সময়<b id="tm">60</b></div>
+    <div>⭐ স্কোর<b id="sc">0</b></div>
+    <div>🎚 লেভেল<b id="lv">1</b></div>
+    <div>লাইফ<b id="hearts">❤️❤️❤️</b></div>
+  </div>
+  <div class="bar"><div id="bar"></div></div>
+  <div class="card" id="stage">
+    <span id="tag"></span>
+    <div id="pic"></div>
+    <div id="txt"></div>
+    <div id="extra"></div>
+    <div id="ans"></div>
+  </div>
+  <button class="btn" id="lol">😆 আমি হেসে ফেলেছি!</button>
+  <p id="mini">Manual Mode: হাসলে সৎভাবে বাটন (বা Space) চাপো!</p>
+</section>
+<div class="cam" id="camBox"><video id="vid" playsinline muted></video><div class="m"><div id="meter"></div></div><small>😁 হাসির মিটার</small></div>
+
+<!-- END -->
+<section class="scr" id="s3">
+  <div class="card" style="text-align:center">
+    <div class="big" id="eEmo" style="font-size:80px"></div>
+    <h2 id="eTitle" style="font-size:34px"></h2>
+    <p id="eSub" style="font-weight:600;margin:6px 0"></p>
+    <h2 style="font-size:46px;color:var(--yel)" id="eScore"></h2>
+    <button class="btn alt" id="again"></button>
+    <button class="btn" id="home">🏠 হোম</button>
+  </div>
+  <div class="card"><h2>🏆 লিডারবোর্ড</h2><ul class="lb" id="lb2"></ul></div>
+</section>
+
+<script>
+const $=id=>document.getElementById(id),R=a=>a[Math.random()*a.length|0];
+
+/* ---------- Sound (Web Audio, no files) ---------- */
+let AC,mute=false;
+function snd(f,d=.12,t='sine',at=0,v=.15){if(mute)return;try{AC=AC||new(window.AudioContext||webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),T=AC.currentTime+at;o.type=t;o.frequency.setValueAtTime(f,T);g.gain.setValueAtTime(v,T);g.gain.exponentialRampToValueAtTime(.001,T+d);o.connect(g);g.connect(AC.destination);o.start(T);o.stop(T+d)}catch(e){}}
+const sfx={
+ pop:()=>{snd(300,.1,'square');snd(600,.1,'square',.07);snd(900,.12,'square',.14)},
+ tick:()=>snd(1000,.05,'triangle'),
+ lose:()=>[500,380,260,140].forEach((f,i)=>snd(f,.2,'sawtooth',i*.12,.2)),
+ win:()=>[523,659,784,1047,784,1047,1319].forEach((f,i)=>snd(f,.22,'triangle',i*.11)),
+ boo:()=>[200,150].forEach((f,i)=>snd(f,.4,'sawtooth',i*.3,.2)),
+ click:()=>snd(700,.07,'square')};
+$('snd').onclick=()=>{mute=!mute;$('snd').textContent=mute?'🔇':'🔊'};
+
+/* ---------- Content generator (new every round, no repeats) ---------- */
+const S=[['একটা হাতি','🐘'],['তোমার স্যার','👨‍🏫'],['একটা মুরগি','🐔'],['পাশের বাসার কাকু','🧔'],['একটা রোবট','🤖'],['তোমার দাদু','👴'],['একটা বিড়াল','🐱'],['একটা ভূত','👻'],['একটা বান্দর','🐵'],['তোমার বন্ধু','🤡']];
+const A=[['মোবাইলে TikTok বানাচ্ছে','📱'],['সাইকেলে চড়ে অফিসে যাচ্ছে','🚲'],['ঘুমের মধ্যে র‍্যাপ গাইছে','🎤'],['পরীক্ষার খাতায় প্রেমের কবিতা লিখছে','📝'],['বিরিয়ানি চুরি করতে গিয়ে ধরা খেয়েছে','🍛'],['প্যান্ট উল্টো পরে ঘুরছে','👖'],['আয়নার সাথে ঝগড়া করছে','🪞'],['ছাতা মাথায় দিয়ে সাঁতার কাটছে','🏊'],['লুঙ্গি পরে ফুটবল খেলছে','⚽'],['ক্লাসে বসে নাক ডাকছে','😴']];
+const T=['…আর সবাই হাততালি দিচ্ছে 👏','…হঠাৎ লোডশেডিং হয়ে গেল! 💡','…কিন্তু কেউ বিশ্বাস করছে না! 🙄','…পেছনে ব্যাকগ্রাউন্ড মিউজিক বাজছে 🎶','…আর ক্যামেরা সব রেকর্ড করছে! 🎥'];
+const RULE=['😬 চ্যালেঞ্জ: দাঁত চেপে রাখো!','👀 চ্যালেঞ্জ: চোখের পলক ফেলো না!','🗿 চ্যালেঞ্জ: পাথরের মতো গম্ভীর থাকো!','🫢 চ্যালেঞ্জ: ঠোঁট কামড়ে ধরো!','🧘 চ্যালেঞ্জ: দম নিয়ে ভাবো—এটা সিরিয়াস ব্যাপার!'];
+const Q=['ভাই, এটা তো আমারই কাজ ছিল!','দারুণ! আমাকেও শিখিয়ে দাও!','আমি কি স্বপ্ন দেখছি নাকি?!','এই খবর কিন্তু আমি মাকে বলে দেব!','তুমি কি সত্যিই এটা করলে?!'];
+const ST=[
+['রোগী: ডাক্তার সাহেব, আমি সবকিছু ভুলে যাই! ডাক্তার: কতদিন ধরে? রোগী: কীসের কথা বলছেন?','🤕'],
+['বাবা: পরীক্ষায় কত পেলি? ছেলে: বাবা, তুমিই তো বলেছিলে সৎ থাকতে… তাই সত্যি বলছি—শূন্য!','📝'],
+['মোবাইল সারা রাত চার্জে দিয়ে ঘুমালাম। সকালে মোবাইল ১০০%, আমি ১%!','🔋'],
+['ছেলে: মা, গরু ঘাস খেয়ে এত শক্তিশালী, আমি বিরিয়ানি খেয়ে কেন দুর্বল?','🐄'],
+['শিক্ষক: পানির সূত্র বলো। ছাত্র: স্যার, H থেকে O! শিক্ষক: মানে? ছাত্র: স্যার, কেউ বলেছিল HIJKLMNO!','💧'],
+['দোকানদার: ভাই, এটা অটোমেটিক ঘড়ি। ক্রেতা: তাহলে সময় নিজে নিজে ঠিক হবে? দোকানদার: না, ভুলটা অটোমেটিক!','⌚'],
+['বউ: আমি আর রান্না করব না! স্বামী: আজ কী হয়েছে? বউ: কিছু হয়নি… তুমি আজ প্রথম খেয়ে কিছু বললে না, তাই ভয় পাচ্ছি!','🍲']];
+const RD=[
+['বিড়াল কেন কম্পিউটার ভালোবাসে?','কারণ সেখানে মাউস আছে! 🐭','🐱'],
+['ঘড়ি কেন হাসপাতালে গেল?','কারণ তার টাইম খারাপ যাচ্ছিল! ⏰','⏰'],
+['কোন জিনিস যত শুকায় তত ভেজা হয়?','তোয়ালে! 🧻','🧖'],
+['কোন ফলের নাম বললে সবাই চুপ হয়ে যায়?','"ফল" (পরীক্ষার ফল)! 😬','📜'],
+['মুরগি রাস্তা পার হলো কেন?','কারণ অন্য পাশে ফ্রি ওয়াইফাই ছিল! 📶','🐔'],
+['আমি সবসময় আসছি, কিন্তু কখনো পৌঁছাই না। আমি কে?','আগামীকাল! 📅','🕰️'],
+['কোন রুটি খাওয়া যায় না?','বিবেক-রুটি… থুড়ি, "ত্রুটি"! 😜','🍞'],
+['ভূত কেন পরীক্ষায় ফেল করে না?','কারণ সে সবসময় "পাস" দিয়ে আসে! 👻','👻']];
+const used=new Set();
+function gen(m){
+ for(let i=0;i<30;i++){
+  let c;
+  if(m==='challenge'){const s=R(S),a=R(A);c={tag:'🤪 Funny Challenge',pic:s[1]+'➕'+a[1],txt:`কল্পনা করো: ${s[0]} ${a[0]} ${R(T)}`,extra:R(RULE)}}
+  else if(m==='story'){if(Math.random()<.45){const j=R(ST);c={tag:'📖 Funny Story',pic:j[1],txt:j[0],extra:'😐 গম্ভীর থাকো…'}}else{const s=R(S),s2=R(S),a=R(A);c={tag:'📖 Funny Story',pic:s[1]+'💬'+s2[1],txt:`একদিন ${s[0]} ${a[0]}। দেখে ${s2[0]} বলল, "${R(Q)}"`,extra:'🤐 মুখ বন্ধ!'}}}
+  else{const r=R(RD);c={tag:'❓ Funny Question',pic:r[2]+'❓',txt:r[0],extra:'ভাবো… উত্তর আসছে!',ans:r[1]}}
+  if(!used.has(c.txt)){used.add(c.txt);return c}
+ }
+ used.clear();return gen(m)
+}
+
+/* ---------- State ---------- */
+let mode='challenge',useCam=true,name='',lives,score,level=1,time,run=false,timerI,contentI,ansT,lastLoss=0,
+    camOK=false,lm,stream,sm=0,hit=0,lastD=0;
+const TITLES=['নবিশ 🐣','গম্ভীর 🗿','পাথরমুখ 🪨','মহা-ঋষি 🧘','কিংবদন্তি 👑'];
+const show=id=>{document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id===id));$('camBox').style.display=(id==='s2'&&camOK)?'block':'none'};
+const toast=t=>{const e=$('toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2600)};
+
+/* ---------- Leaderboard (localStorage) ---------- */
+const LK='dlc_lb_v1';
+function getLB(){try{const d=JSON.parse(localStorage.getItem(LK));if(d&&d.length)return d}catch(e){}
+ return [{n:'গম্ভীর গফুর',s:620,l:4},{n:'হাসিখুশি রিনা',s:410,l:3},{n:'পাথরমুখ পলাশ',s:300,l:2},{n:'ভীতু ভূত',s:150,l:1}]}
+function saveLB(){const l=getLB();l.push({n:name,s:score,l:level});l.sort((a,b)=>b.s-a.s);try{localStorage.setItem(LK,JSON.stringify(l.slice(0,10)))}catch(e){}}
+function drawLB(){const h=getLB().slice(0,8).map((r,i)=>`<li><span>${['🥇','🥈','🥉'][i]||i+1+'.'}</span><span>${r.n.replace(/</g,'&lt;')}</span><span>লেভেল ${r.l}</span><b>${r.s}</b></li>`).join('');$('lb1').innerHTML=$('lb2').innerHTML=h}
+
+/* ---------- Camera + AI smile detection (MediaPipe) ---------- */
+async function initCam(){
+ try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}});$('vid').srcObject=stream;await $('vid').play()}
+ catch(e){toast('ক্যামেরা অনুমতি নেই — Manual Mode চালু 🖐️');return false}
+ try{
+  const V='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14';
+  const m=await import(V+'/vision_bundle.mjs'),fs=await m.FilesetResolver.forVisionTasks(V+'/wasm');
+  lm=await m.FaceLandmarker.createFromOptions(fs,{baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task'},runningMode:'VIDEO',outputFaceBlendshapes:true,numFaces:1});
+  return true
+ }catch(e){stopCam();toast('AI মডেল লোড হয়নি (ইন্টারনেট লাগবে) — Manual Mode চালু 🖐️');return false}
+}
+function stopCam(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}camOK=false;$('camBox').style.display='none'}
+function loop(){
+ if(!run||!camOK)return;
+ const n=performance.now(),v=$('vid');
+ if(n-lastD>110&&v.readyState>1){lastD=n;
+  try{const b=lm.detectForVideo(v,n).faceBlendshapes[0];
+   if(b){const g=k=>b.categories.find(c=>c.categoryName===k).score;sm=(g('mouthSmileLeft')+g('mouthSmileRight'))/2;
+    $('meter').style.width=Math.min(100,sm*160)+'%';
+    if(sm>.45){if(++hit>=2)laugh()}else hit=0}}catch(e){}}
+ requestAnimationFrame(loop)
+}
+
+/* ---------- Game flow ---------- */
+function hearts(){$('hearts').textContent='❤️'.repeat(Math.max(lives,0))+'🖤'.repeat(3-Math.max(lives,0))}
+function hud(){$('tm').textContent=time;$('sc').textContent=score;$('lv').textContent=level;$('bar').style.width=time/60*100+'%';hearts()}
+function nextContent(){
+ const c=gen(mode);clearTimeout(ansT);
+ $('tag').textContent=c.tag;$('txt').textContent=c.txt;$('extra').textContent=c.extra||'';$('ans').style.display='none';
+ const p=$('pic');p.textContent=c.pic;p.classList.remove('in');void p.offsetWidth;p.classList.add('in');
+ p.style.animation=R(['pop .7s cubic-bezier(.2,2,.4,1)','pop .7s cubic-bezier(.2,2,.4,1), wob 1.2s .7s infinite']);
+ sfx.pop();
+ if(c.ans)ansT=setTimeout(()=>{if(run){$('ans').textContent='💡 '+c.ans;$('ans').style.display='block';sfx.boo()}},Math.max(2500,interval()*500));
+}
+const interval=()=>Math.max(4,9-level);
+async function start(){
+ name=($('name').value.trim()||'অজানা খেলোয়াড়');sfx.click();
+ const b=$('go');
+ if(useCam){b.textContent='⏳ ক্যামেরা চালু হচ্ছে…';b.disabled=true;camOK=await initCam();b.disabled=false;b.textContent='▶ খেলা শুরু!'}
+ else camOK=false;
+ lives=3;score=0;time=60;run=true;hit=0;lastLoss=0;used.clear();
+ show('s2');$('lol').style.display=camOK?'none':'block';$('mini').style.display=camOK?'none':'block';
+ hud();nextContent();
+ timerI=setInterval(()=>{time--;score+=10*level;if(time<=10){sfx.tick();$('s2').classList.add('warn')}hud();if(time<=0)end(true)},1000);
+ contentI=setInterval(nextContent,interval()*1000);
+ if(camOK)loop();
+}
+function laugh(){
+ if(!run||Date.now()-lastLoss<2000)return;
+ lastLoss=Date.now();lives--;score=Math.max(0,score-30);
+ sfx.lose();const d=document.body;d.classList.add('flash');$('s2').classList.add('shake');
+ setTimeout(()=>{d.classList.remove('flash');$('s2').classList.remove('shake')},550);
+ toast(R(['😂 হেসে ফেলেছ! -১ লাইফ','🤣 ধরা খেলে!','😆 হাসি আটকাতে পারলে না!']));hud();
+ if(lives<=0)end(false)
+}
+function end(win){
+ run=false;clearInterval(timerI);clearInterval(contentI);clearTimeout(ansT);$('s2').classList.remove('warn');stopCam();
+ if(win)score+=lives*50+100*level;
+ saveLB();drawLB();show('s3');
+ $('eEmo').textContent=win?'🏆':'🤣';
+ $('eTitle').textContent=win?'অভিনন্দন! তুমি জিতেছ!':'হেরে গেলে! হাসি জিতেছে!';
+ $('eSub').textContent=win?`র‍্যাঙ্ক: ${TITLES[Math.min(level-1,4)]} • বাকি লাইফ: ${lives}`:'সব লাইফ শেষ। আবার চেষ্টা করো!';
+ $('eScore').textContent='⭐ '+score;
+ $('again').textContent=win?`🚀 লেভেল ${level+1} শুরু করো`:'🔁 আবার খেলো';
+ $('again').dataset.w=win?1:0;
+ if(win){sfx.win();for(let i=0;i<45;i++){const e=document.createElement('span');e.className='cf';e.textContent=R(['🎉','🎊','😎','⭐','🥳','😂']);e.style.left=Math.random()*100+'vw';e.style.animationDelay=Math.random()*1.5+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),5000)}}
+ else sfx.lose()
+}
+
+/* ---------- UI wiring ---------- */
+document.querySelectorAll('#modes .opt').forEach(b=>b.onclick=()=>{document.querySelectorAll('#modes .opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');mode=b.dataset.m;sfx.click()});
+document.querySelectorAll('#cams .opt').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cams .opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');useCam=b.dataset.c==='1';sfx.click()});
+$('go').onclick=()=>{level=1;start()};
+$('again').onclick=()=>{level=$('again').dataset.w==='1'?level+1:1;start()};
+$('home').onclick=()=>{level=1;show('s1');drawLB()};
+$('lol').onclick=laugh;
+addEventListener('keydown',e=>{if(e.code==='Space'&&run&&!camOK&&document.activeElement.tagName!=='INPUT'){e.preventDefault();laugh()}});
+for(let i=0;i<14;i++){const f=document.createElement('span');f.className='fl';f.textContent=R(['😂','🤣','😜','🤪','😆','🤡','💩','🎈']);f.style.left=Math.random()*100+'vw';f.style.animationDuration=8+Math.random()*12+'s';f.style.animationDelay=-Math.random()*15+'s';document.body.appendChild(f)}
+drawLB();
+</script>
+</body>
+</html>
